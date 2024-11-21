@@ -1,16 +1,16 @@
 
-package Home_Page;
+package CustomerManagement;
 
- import java.awt. Color;
  import Home_Page.HomeTab;
+ import java.awt. Color;
  
-public class Home extends javax.swing.JFrame {
+public class dashCustomer extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
     Color defaultcolor, clickedcolor, white; 
-    public Home() {
+    public dashCustomer() {
         initComponents();
         defaultcolor = new Color(0,0,102);
         clickedcolor = new Color(0,102,204);
@@ -198,13 +198,18 @@ public class Home extends javax.swing.JFrame {
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         // TODO add your handling code here:
-        Home_Page.HomeTab hometab = new Home_Page.HomeTab(); // Create a new Home object
-        hometab.setVisible(true); // Show the new Home window
+        Home_Page.HomeTab hometab = new Home_Page.HomeTab();  // Make sure to import Home class
+        hometab.setVisible(true);
+                
+                // Close the current login JFrame
+        this.dispose();  // Close the current login window
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void lblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCustomerMouseClicked
         // TODO add your handling code here:
-        
+        CustomerManagement.subButtons subbtn = new CustomerManagement.subButtons();
+        subbtn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblCustomerMouseClicked
 
     private void lblHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMousePressed
@@ -244,20 +249,21 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dashCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dashCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dashCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dashCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new dashCustomer().setVisible(true);
             }
         });
     }

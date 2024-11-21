@@ -2,15 +2,13 @@
 package Home_Page;
 
  import java.awt. Color;
- import Home_Page.HomeTab;
- 
-public class Home extends javax.swing.JFrame {
+public class HomeTab extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
     Color defaultcolor, clickedcolor, white; 
-    public Home() {
+    public HomeTab() {
         initComponents();
         defaultcolor = new Color(0,0,102);
         clickedcolor = new Color(0,102,204);
@@ -198,18 +196,21 @@ public class Home extends javax.swing.JFrame {
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         // TODO add your handling code here:
-        Home_Page.HomeTab hometab = new Home_Page.HomeTab(); // Create a new Home object
-        hometab.setVisible(true); // Show the new Home window
+        
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void lblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCustomerMouseClicked
         // TODO add your handling code here:
-        
+        CustomerManagement.subButtons subbtn = new CustomerManagement.subButtons();
+        subbtn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblCustomerMouseClicked
 
     private void lblHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMousePressed
         // TODO add your handling code here:
         panHome.setBackground(clickedcolor);
+        panCustomer.setBackground(defaultcolor);
+        lblHome.setForeground(white);
     }//GEN-LAST:event_lblHomeMousePressed
 
     private void lblHomeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseReleased
@@ -244,20 +245,21 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new HomeTab().setVisible(true);
             }
         });
     }
