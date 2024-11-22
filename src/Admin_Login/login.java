@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Home_Page.Home; 
+import Home_Page.Home_Tab; 
 
 public class login extends javax.swing.JFrame {
 
@@ -198,7 +198,7 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                 
                 // Create an instance of the Home JFrame from the Home_Page package
-                Home_Page.Home homePage = new Home_Page.Home();  // Make sure to import Home class
+                Home_Page.Home_Tab homePage = new Home_Page.Home_Tab();  // Make sure to import Home class
                 homePage.setVisible(true);
                 
                 // Close the current login JFrame
