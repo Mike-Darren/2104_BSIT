@@ -1,30 +1,41 @@
+package ViewCustomerData;
 
-package CustomerManagement;
 
+//package ViewCustomerData;
 
+import CustomerManagement.*;
 import Home_Page.Home_Tab;
 import ViewCustomerData.viewCustUsage;
-import ViewCustomerData.viewCustList;
 import ViewCustomerData.viewCustBilling;
 import ViewCustomerData.viewCustMeter;
 import ViewCustomerData.viewCustTariff;
 import ViewCustomerData.viewCustPayment;
+//import ViewCustomerData.viewCustomer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.SQLException;
  
 
-public class viewButton extends javax.swing.JFrame {
+public class viewCustList extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
     Color defaultcolor, clickedcolor, white; 
-    public viewButton() {
+    public viewCustList() {
         setUndecorated(true); 
         
         initComponents();
+        Con();
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         gd.setFullScreenWindow(this); // Set the JFrame to full screen
         
@@ -32,6 +43,69 @@ public class viewButton extends javax.swing.JFrame {
         clickedcolor = new Color(0,102,204);
         white = new Color (255,255,255);
         
+        
+    }
+        Connection con; //= null;
+        PreparedStatement ps;// = null;
+        ResultSet rs;// = null;
+        
+    public void Con(){
+        try {
+            // Establish connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/2104_wrs", "root", "");
+            System.out.println("Connection Successful");
+            // Prepare the SQL query to select all records from 'customerinfo' table
+            ps = con.prepareStatement("SELECT * FROM customerinfo");
+            
+            // Execute the query
+            rs = ps.executeQuery();
+            //JOptionPane.showMessageDialog(this, "An error occurred while fetching data: " + ex.getMessage());
+
+            // Create a DefaultTableModel for the JTable
+            DefaultTableModel model = new DefaultTableModel();
+            
+            // Define the column names
+            model.addColumn("CUSTOMERID");
+            model.addColumn("FIRST_NAME");
+            model.addColumn("LAST_NAME");
+            model.addColumn("Address");
+            model.addColumn("PHONE_NUMBER");
+            model.addColumn("Email");
+
+            // Process the result set and add rows to the table model
+            while (rs.next()) {
+                // Get data from the result set
+                String customerID = rs.getString("CustomerID");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String address = rs.getString("Address");
+                String phoneNumber = rs.getString("phoneNumber");
+                String email = rs.getString("email");
+
+                // Add the row to the model
+                model.addRow(new Object[]{customerID, firstName, lastName, address, phoneNumber, email});
+            }
+            
+            // Set the model to your JTable (assuming your table is named customerTable)
+            customerTable.setModel(model);
+            
+            // Optionally show a success message
+            //JOptionPane.showMessageDialog(this, "Data displayed successfully!");
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "An error occurred while fetching data: " + ex.getMessage());
+            ex.printStackTrace(); // or use a logger if needed
+        } finally {
+            // Close resources to prevent memory leaks
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
 
@@ -75,6 +149,9 @@ public class viewButton extends javax.swing.JFrame {
         lblPayment = new javax.swing.JLabel();
         panMeter = new javax.swing.JPanel();
         lblMeter = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        customerTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -566,6 +643,34 @@ public class viewButton extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 710));
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel3.setText("CUSTOMER LIST");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, -1));
+
+        customerTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "CUSTOMERID", "FIRST_NAME", "LAST_NAME", "ADDRESS", "PHONE_NUMBER", "EMAIL"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(customerTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 177, 1010, 550));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -636,7 +741,7 @@ public class viewButton extends javax.swing.JFrame {
 
     private void lblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListMouseClicked
         // TODO add your handling code here:
-        new viewCustList().setVisible(true);
+        //new viewCustList().setVisible(true);
     }//GEN-LAST:event_lblListMouseClicked
 
     private void lblListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListMousePressed
@@ -768,10 +873,7 @@ public class viewButton extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblMeterKeyPressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -785,14 +887,18 @@ public class viewButton extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -801,23 +907,26 @@ public class viewButton extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewButton().setVisible(true);
+                new viewCustList().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable customerTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblBilling;
     private javax.swing.JLabel lblCustomer;

@@ -1,10 +1,11 @@
 
-package CustomerManagement;
+package ViewCustomerData;
 
 
+import CustomerManagement.*;
 import Home_Page.Home_Tab;
-import ViewCustomerData.viewCustUsage;
 import ViewCustomerData.viewCustList;
+import ViewCustomerData.viewCustUsage;
 import ViewCustomerData.viewCustBilling;
 import ViewCustomerData.viewCustMeter;
 import ViewCustomerData.viewCustTariff;
@@ -13,18 +14,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import java.sql.DriverManager;
+import java.sql.SQLException;
  
 
-public class viewButton extends javax.swing.JFrame {
+public class viewCustUsage extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
     Color defaultcolor, clickedcolor, white; 
-    public viewButton() {
+    public viewCustUsage() {
         setUndecorated(true); 
         
         initComponents();
+        Con();
+        
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         gd.setFullScreenWindow(this); // Set the JFrame to full screen
         
@@ -34,6 +43,64 @@ public class viewButton extends javax.swing.JFrame {
         
     }
     
+Connection con; 
+PreparedStatement ps; 
+ResultSet rs;
+
+public void Con() {
+    try {
+        // Establish connection
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/2104_wrs", "root", "");
+        System.out.println("Connection Successful");
+
+        // Prepare the SQL query to select all records from the 'waterusage' table
+        ps = con.prepareStatement("SELECT * FROM waterusage");
+
+        // Execute the query
+        rs = ps.executeQuery();
+
+        // Create a DefaultTableModel for the JTable
+        DefaultTableModel model = new DefaultTableModel();
+
+        // Define the column names
+        model.addColumn("USAGE_ID");
+        model.addColumn("CONSUMED_VOLUME");
+        model.addColumn("START_DATE");
+        model.addColumn("END_DATE");
+
+        // Process the result set and add rows to the table model
+        while (rs.next()) {
+            // Get data from the result set
+            String usageId = rs.getString("usageId");
+            String consumedVolume = rs.getString("consumedVolume");
+            String startDate = rs.getString("startDate");
+            String endDate = rs.getString("endDate");
+
+            // Add the row to the model
+            model.addRow(new Object[]{usageId, consumedVolume, startDate, endDate});
+        }
+
+        // Set the model to your JTable (assuming your JTable is named waterUsageTable)
+        waterUsageTable.setModel(model);
+
+        // Optionally show a success message
+        // JOptionPane.showMessageDialog(this, "Water usage data displayed successfully!");
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "An error occurred while fetching water usage data: " + ex.getMessage());
+        ex.printStackTrace(); // or use a logger if needed
+    } finally {
+        // Close resources to prevent memory leaks
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,6 +142,9 @@ public class viewButton extends javax.swing.JFrame {
         lblPayment = new javax.swing.JLabel();
         panMeter = new javax.swing.JPanel();
         lblMeter = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        waterUsageTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -566,6 +636,31 @@ public class viewButton extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 710));
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel3.setText("CUSTOMER WATER USAGE");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
+
+        waterUsageTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title USAGE_ID1", "CONSUMED_VOLUME", "START_DATE", "END_DATE"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(waterUsageTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 940, 510));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -785,14 +880,18 @@ public class viewButton extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustUsage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustUsage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustUsage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustUsage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -801,7 +900,7 @@ public class viewButton extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewButton().setVisible(true);
+                new viewCustUsage().setVisible(true);
             }
         });
     }
@@ -812,12 +911,14 @@ public class viewButton extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblBilling;
     private javax.swing.JLabel lblCustomer;
@@ -838,5 +939,6 @@ public class viewButton extends javax.swing.JFrame {
     private javax.swing.JPanel panTariff;
     private javax.swing.JPanel panUsage;
     private javax.swing.JPanel panView;
+    private javax.swing.JTable waterUsageTable;
     // End of variables declaration//GEN-END:variables
 }

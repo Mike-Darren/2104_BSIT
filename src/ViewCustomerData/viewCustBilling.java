@@ -1,10 +1,11 @@
 
-package CustomerManagement;
+package ViewCustomerData;
 
 
+import CustomerManagement.*;
 import Home_Page.Home_Tab;
-import ViewCustomerData.viewCustUsage;
 import ViewCustomerData.viewCustList;
+import ViewCustomerData.viewCustUsage;
 import ViewCustomerData.viewCustBilling;
 import ViewCustomerData.viewCustMeter;
 import ViewCustomerData.viewCustTariff;
@@ -13,18 +14,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
  
 
-public class viewButton extends javax.swing.JFrame {
+public class viewCustBilling extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
     Color defaultcolor, clickedcolor, white; 
-    public viewButton() {
+    public viewCustBilling() {
         setUndecorated(true); 
         
         initComponents();
+        Con();
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         gd.setFullScreenWindow(this); // Set the JFrame to full screen
         
@@ -32,8 +40,67 @@ public class viewButton extends javax.swing.JFrame {
         clickedcolor = new Color(0,102,204);
         white = new Color (255,255,255);
         
+        
     }
-    
+        Connection con; //= null;
+        PreparedStatement ps;// = null;
+        ResultSet rs;// = null;Connection con; //= null;
+        
+public void Con() {
+    try {
+        // Establish connection
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/2104_wrs", "root", "");
+        System.out.println("Connection Successful");
+
+        // Prepare the SQL query to select all records from 'billing' table
+       ps = con.prepareStatement("SELECT * FROM billing");
+
+        // Execute the query
+        rs = ps.executeQuery();
+
+        // Create a DefaultTableModel for the JTable
+        DefaultTableModel model = new DefaultTableModel();
+
+        // Define the column names
+        model.addColumn("BILLINGID");
+        model.addColumn("BILLING_DATE");
+        model.addColumn("TOTAL_AMOUNT");
+        model.addColumn("PAYMENT_STATUS");
+
+        // Process the result set and add rows to the table model
+        while (rs.next()) {
+            // Get data from the result set
+            String billingID = rs.getString("billID");
+            String billingDate = rs.getString("billingDate");
+            String totalAmount = rs.getString("totalAmount");
+            String paymentStatus = rs.getString("paymentStatus");
+
+            // Add the row to the model
+            model.addRow(new Object[]{billingID, billingDate, totalAmount, paymentStatus});
+        }
+
+        // Set the model to your JTable (assuming your JTable is named billingTable)
+        billingTable.setModel(model);
+
+        // Optionally show a success message
+        // JOptionPane.showMessageDialog(this, "Billing data displayed successfully!");
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "An error occurred while fetching billing data: " + ex.getMessage());
+        ex.printStackTrace(); // or use a logger if needed
+    } finally {
+        // Close resources to prevent memory leaks
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,6 +142,9 @@ public class viewButton extends javax.swing.JFrame {
         lblPayment = new javax.swing.JLabel();
         panMeter = new javax.swing.JPanel();
         lblMeter = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        billingTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -566,6 +636,32 @@ public class viewButton extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 710));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel3.setText("CUSTOMER BILL");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, -1, -1));
+
+        billingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "BILLINGID", "BILLING_DATE", "TOTAL_AMOUNT", "PAYMENT_STATUS"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(billingTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 1010, 550));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -785,14 +881,18 @@ public class viewButton extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -801,23 +901,26 @@ public class viewButton extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewButton().setVisible(true);
+                new viewCustBilling().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable billingTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblBilling;
     private javax.swing.JLabel lblCustomer;

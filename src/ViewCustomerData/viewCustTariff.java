@@ -1,10 +1,11 @@
 
-package CustomerManagement;
+package ViewCustomerData;
 
 
+import CustomerManagement.*;
 import Home_Page.Home_Tab;
-import ViewCustomerData.viewCustUsage;
 import ViewCustomerData.viewCustList;
+import ViewCustomerData.viewCustUsage;
 import ViewCustomerData.viewCustBilling;
 import ViewCustomerData.viewCustMeter;
 import ViewCustomerData.viewCustTariff;
@@ -15,13 +16,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
  
 
-public class viewButton extends javax.swing.JFrame {
+public class viewCustTariff extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
     Color defaultcolor, clickedcolor, white; 
-    public viewButton() {
+    public viewCustTariff() {
         setUndecorated(true); 
         
         initComponents();
@@ -785,14 +786,18 @@ public class viewButton extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustTariff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustTariff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustTariff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustTariff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -801,7 +806,7 @@ public class viewButton extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewButton().setVisible(true);
+                new viewCustTariff().setVisible(true);
             }
         });
     }

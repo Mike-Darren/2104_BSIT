@@ -26,6 +26,7 @@ public class subButtons extends javax.swing.JFrame {
         white = new Color (255,255,255);
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,21 +50,12 @@ public class subButtons extends javax.swing.JFrame {
         lblHome = new javax.swing.JLabel();
         panCustomer = new javax.swing.JPanel();
         lblCustomer = new javax.swing.JLabel();
-        panAdd = new javax.swing.JPanel();
-        lblAdd = new javax.swing.JLabel();
+        panAdmin = new javax.swing.JPanel();
+        lblAdmin = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        panSelect = new javax.swing.JPanel();
-        lblSelect = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         panView = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         lblView = new javax.swing.JLabel();
-        panDelete = new javax.swing.JPanel();
-        lblDelete = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        panSearch = new javax.swing.JPanel();
-        lblSearch1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,88 +169,50 @@ public class subButtons extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panAdd.setBackground(new java.awt.Color(0, 0, 102));
+        panAdmin.setBackground(new java.awt.Color(0, 0, 102));
 
-        lblAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblAdd.setForeground(new java.awt.Color(0, 153, 255));
-        lblAdd.setText("ADD CUSTOMER");
-        lblAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAdmin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAdmin.setForeground(new java.awt.Color(0, 153, 255));
+        lblAdmin.setText("ADMIN CONTROLS");
+        lblAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAddMouseClicked(evt);
+                lblAdminMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblAddMousePressed(evt);
+                lblAdminMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblAddMouseReleased(evt);
+                lblAdminMouseReleased(evt);
             }
         });
-        lblAdd.addKeyListener(new java.awt.event.KeyAdapter() {
+        lblAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                lblAddKeyPressed(evt);
+                lblAdminKeyPressed(evt);
             }
         });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-add-23.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-setting-23.png"))); // NOI18N
 
-        javax.swing.GroupLayout panAddLayout = new javax.swing.GroupLayout(panAdd);
-        panAdd.setLayout(panAddLayout);
-        panAddLayout.setHorizontalGroup(
-            panAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panAddLayout.createSequentialGroup()
+        javax.swing.GroupLayout panAdminLayout = new javax.swing.GroupLayout(panAdmin);
+        panAdmin.setLayout(panAdminLayout);
+        panAdminLayout.setHorizontalGroup(
+            panAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAdd)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblAdmin)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
-        panAddLayout.setVerticalGroup(
-            panAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAddLayout.createSequentialGroup()
-                .addGroup(panAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panAddLayout.createSequentialGroup()
+        panAdminLayout.setVerticalGroup(
+            panAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAdminLayout.createSequentialGroup()
+                .addGroup(panAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panAdminLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel13))
-                    .addComponent(lblAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-        );
-
-        panSelect.setBackground(new java.awt.Color(0, 0, 102));
-
-        lblSelect.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblSelect.setForeground(new java.awt.Color(0, 153, 204));
-        lblSelect.setText("SELECT CUSTOMER");
-        lblSelect.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSelectMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblSelectMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblSelectMouseReleased(evt);
-            }
-        });
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-checked-checkbox-23.png"))); // NOI18N
-
-        javax.swing.GroupLayout panSelectLayout = new javax.swing.GroupLayout(panSelect);
-        panSelect.setLayout(panSelectLayout);
-        panSelectLayout.setHorizontalGroup(
-            panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panSelectLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSelect)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panSelectLayout.setVerticalGroup(
-            panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panSelectLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panView.setBackground(new java.awt.Color(0, 0, 102));
@@ -269,7 +223,7 @@ public class subButtons extends javax.swing.JFrame {
         lblView.setBackground(new java.awt.Color(0, 0, 0));
         lblView.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblView.setForeground(new java.awt.Color(0, 153, 204));
-        lblView.setText("VIEW CUSTOMER LIST");
+        lblView.setText("VIEW CUSTOMER DATA");
         lblView.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblViewMouseClicked(evt);
@@ -290,8 +244,8 @@ public class subButtons extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblView, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panViewLayout.setVerticalGroup(
             panViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,82 +255,6 @@ public class subButtons extends javax.swing.JFrame {
                     .addComponent(lblView)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-        );
-
-        panDelete.setBackground(new java.awt.Color(0, 0, 102));
-        panDelete.setForeground(new java.awt.Color(255, 255, 255));
-        panDelete.setPreferredSize(new java.awt.Dimension(294, 20));
-
-        lblDelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDelete.setForeground(new java.awt.Color(0, 153, 204));
-        lblDelete.setText("DELETE CUSTOMER");
-        lblDelete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblDeleteMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblDeleteMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblDeleteMouseReleased(evt);
-            }
-        });
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-delete-23.png"))); // NOI18N
-
-        javax.swing.GroupLayout panDeleteLayout = new javax.swing.GroupLayout(panDelete);
-        panDelete.setLayout(panDeleteLayout);
-        panDeleteLayout.setHorizontalGroup(
-            panDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panDeleteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        panDeleteLayout.setVerticalGroup(
-            panDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-
-        panSearch.setBackground(new java.awt.Color(0, 0, 102));
-        panSearch.setForeground(new java.awt.Color(255, 255, 255));
-
-        lblSearch1.setBackground(new java.awt.Color(0, 0, 102));
-        lblSearch1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblSearch1.setForeground(new java.awt.Color(0, 153, 255));
-        lblSearch1.setText("SEARCH CUSTOMER");
-        lblSearch1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSearch1MouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblSearch1MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblSearch1MouseReleased(evt);
-            }
-        });
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-23.png"))); // NOI18N
-
-        javax.swing.GroupLayout panSearchLayout = new javax.swing.GroupLayout(panSearch);
-        panSearch.setLayout(panSearchLayout);
-        panSearchLayout.setHorizontalGroup(
-            panSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panSearchLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSearch1)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        panSearchLayout.setVerticalGroup(
-            panSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblSearch1)
-            .addComponent(jLabel8)
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -390,22 +268,15 @@ public class subButtons extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panSelect, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
-                .addGap(59, 59, 59))
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(73, 73, 73))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(73, 73, 73))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(panView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))))
+                    .addComponent(panAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,14 +292,8 @@ public class subButtons extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(panView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(panDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addComponent(panAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 710));
@@ -459,7 +324,7 @@ public class subButtons extends javax.swing.JFrame {
 
     private void lblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCustomerMouseClicked
         // TODO add your handling code here:
-        
+        //new Home_Tab().setVisible(true);
     }//GEN-LAST:event_lblCustomerMouseClicked
 
     private void lblHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMousePressed
@@ -497,69 +362,24 @@ public class subButtons extends javax.swing.JFrame {
         panView.setBackground(defaultcolor);
     }//GEN-LAST:event_lblViewMouseReleased
 
-    private void lblSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSelectMouseClicked
+    private void lblAdminKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblAdminKeyPressed
         // TODO add your handling code here:
-        new selectButton().setVisible(true);
-    }//GEN-LAST:event_lblSelectMouseClicked
+    }//GEN-LAST:event_lblAdminKeyPressed
 
-    private void lblSelectMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSelectMousePressed
+    private void lblAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdminMouseClicked
         // TODO add your handling code here:
-        panSelect.setBackground(white);
-    }//GEN-LAST:event_lblSelectMousePressed
+        new adminButton().setVisible(true);
+    }//GEN-LAST:event_lblAdminMouseClicked
 
-    private void lblSelectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSelectMouseReleased
+    private void lblAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdminMousePressed
         // TODO add your handling code here:
-        panSelect.setBackground(defaultcolor);
-    }//GEN-LAST:event_lblSelectMouseReleased
+        panAdmin.setBackground(white);
+    }//GEN-LAST:event_lblAdminMousePressed
 
-    private void lblAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblAddKeyPressed
+    private void lblAdminMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdminMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblAddKeyPressed
-
-    private void lblAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseClicked
-        // TODO add your handling code here:
-        new addButton().setVisible(true);
-    }//GEN-LAST:event_lblAddMouseClicked
-
-    private void lblAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMousePressed
-        // TODO add your handling code here:
-        panAdd.setBackground(white);
-    }//GEN-LAST:event_lblAddMousePressed
-
-    private void lblAddMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseReleased
-        // TODO add your handling code here:
-        panAdd.setBackground(defaultcolor);
-    }//GEN-LAST:event_lblAddMouseReleased
-
-    private void lblSearch1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearch1MouseClicked
-        // TODO add your handling code here:
-        new searchButton().setVisible(true);
-    }//GEN-LAST:event_lblSearch1MouseClicked
-
-    private void lblSearch1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearch1MousePressed
-        // TODO add your handling code here:
-        panSearch.setBackground(white);
-    }//GEN-LAST:event_lblSearch1MousePressed
-
-    private void lblSearch1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearch1MouseReleased
-        // TODO add your handling code here:
-        panSearch.setBackground(defaultcolor);
-    }//GEN-LAST:event_lblSearch1MouseReleased
-
-    private void lblDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteMouseClicked
-        // TODO add your handling code here:
-        new deleteButton().setVisible(true);
-    }//GEN-LAST:event_lblDeleteMouseClicked
-
-    private void lblDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteMousePressed
-        // TODO add your handling code here:
-        panDelete.setBackground(white);
-    }//GEN-LAST:event_lblDeleteMousePressed
-
-    private void lblDeleteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteMouseReleased
-        // TODO add your handling code here:
-        panDelete.setBackground(defaultcolor);
-    }//GEN-LAST:event_lblDeleteMouseReleased
+        panAdmin.setBackground(defaultcolor);
+    }//GEN-LAST:event_lblAdminMouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -593,6 +413,12 @@ public class subButtons extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -606,30 +432,21 @@ public class subButtons extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblAdd;
+    private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblCustomer;
-    private javax.swing.JLabel lblDelete;
     private javax.swing.JLabel lblHome;
-    private javax.swing.JLabel lblSearch1;
-    private javax.swing.JLabel lblSelect;
     private javax.swing.JLabel lblView;
-    private javax.swing.JPanel panAdd;
+    private javax.swing.JPanel panAdmin;
     private javax.swing.JPanel panCustomer;
-    private javax.swing.JPanel panDelete;
     private javax.swing.JPanel panHome;
-    private javax.swing.JPanel panSearch;
-    private javax.swing.JPanel panSelect;
     private javax.swing.JPanel panView;
     // End of variables declaration//GEN-END:variables
 }

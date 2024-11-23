@@ -1,30 +1,41 @@
+package ViewCustomerData;
 
-package CustomerManagement;
 
+//package ViewCustomerData;
 
+import CustomerManagement.*;
 import Home_Page.Home_Tab;
 import ViewCustomerData.viewCustUsage;
-import ViewCustomerData.viewCustList;
 import ViewCustomerData.viewCustBilling;
 import ViewCustomerData.viewCustMeter;
 import ViewCustomerData.viewCustTariff;
 import ViewCustomerData.viewCustPayment;
+//import ViewCustomerData.viewCustomer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.SQLException;
  
 
-public class viewButton extends javax.swing.JFrame {
+public class viewCustPayment extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
     Color defaultcolor, clickedcolor, white; 
-    public viewButton() {
+    public viewCustPayment() {
         setUndecorated(true); 
         
         initComponents();
+        Con();
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         gd.setFullScreenWindow(this); // Set the JFrame to full screen
         
@@ -32,7 +43,68 @@ public class viewButton extends javax.swing.JFrame {
         clickedcolor = new Color(0,102,204);
         white = new Color (255,255,255);
         
+        
     }
+        Connection con; //= null;
+        PreparedStatement ps;// = null;
+        ResultSet rs;// = null;Connection con; //= null;
+        
+public void Con() {
+    try {
+        // Establish connection
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/2104_wrs", "root", "");
+        System.out.println("Connection Successful");
+
+        // Prepare the SQL query to select all records from the 'payment' table
+        ps = con.prepareStatement("SELECT * FROM payment");
+
+        // Execute the query
+        rs = ps.executeQuery();
+
+        // Create a DefaultTableModel for the JTable
+        DefaultTableModel model = new DefaultTableModel();
+
+        // Define the column names
+        model.addColumn("PAYMENTID");
+        model.addColumn("PAYMENT_DATE");
+        model.addColumn("AMOUNT_PAID");
+        model.addColumn("PAYMENT_METHOD");
+
+
+        // Process the result set and add rows to the table model
+        while (rs.next()) {
+            // Get data from the result set
+            String paymentId = rs.getString("paymentId");
+            String paymentDate = rs.getString("paymentDate");
+            String amountPaid = rs.getString("amountPaid");
+            String paymentMethod = rs.getString("paymentMethod");
+
+            // Add the row to the model
+            model.addRow(new Object[]{paymentId, paymentDate, amountPaid, paymentMethod,});
+        }
+
+        // Set the model to your JTable (assuming your JTable is named paymentTable)
+        paymentTable.setModel(model);
+
+        // Optionally show a success message
+        // JOptionPane.showMessageDialog(this, "Payment data displayed successfully!");
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "An error occurred while fetching payment data: " + ex.getMessage());
+        ex.printStackTrace(); // or use a logger if needed
+    } finally {
+        // Close resources to prevent memory leaks
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
     
 
     /**
@@ -75,6 +147,9 @@ public class viewButton extends javax.swing.JFrame {
         lblPayment = new javax.swing.JLabel();
         panMeter = new javax.swing.JPanel();
         lblMeter = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        paymentTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -566,6 +641,31 @@ public class viewButton extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 710));
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel3.setText("CUSTOMER PAYMENT");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
+
+        paymentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "PAYMENTID", "PAYMENT_DATE", "AMOUNT_PAID", "PAYMENT_METHOD"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(paymentTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 177, 1010, 550));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -636,7 +736,7 @@ public class viewButton extends javax.swing.JFrame {
 
     private void lblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListMouseClicked
         // TODO add your handling code here:
-        new viewCustList().setVisible(true);
+        //new viewCustList().setVisible(true);
     }//GEN-LAST:event_lblListMouseClicked
 
     private void lblListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListMousePressed
@@ -768,10 +868,7 @@ public class viewButton extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblMeterKeyPressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -785,14 +882,18 @@ public class viewButton extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewButton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewCustBilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -801,7 +902,7 @@ public class viewButton extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewButton().setVisible(true);
+                new viewCustPayment().setVisible(true);
             }
         });
     }
@@ -812,12 +913,14 @@ public class viewButton extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblBilling;
     private javax.swing.JLabel lblCustomer;
@@ -838,5 +941,6 @@ public class viewButton extends javax.swing.JFrame {
     private javax.swing.JPanel panTariff;
     private javax.swing.JPanel panUsage;
     private javax.swing.JPanel panView;
+    private javax.swing.JTable paymentTable;
     // End of variables declaration//GEN-END:variables
 }
